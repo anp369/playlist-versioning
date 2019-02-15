@@ -1,0 +1,55 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/SpotifyVersioning.csproj",
+    "projectName": "SpotifyVersioning",
+    "projectPath": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/SpotifyVersioning.csproj",
+    "outputPath": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "CommandLineParser": {
+          "target": "Package",
+          "version": "[2.4.3, )"
+        },
+        "LibGit2Sharp": {
+          "target": "Package",
+          "version": "[0.26.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        },
+        "SpotifyAPI-NET": {
+          "target": "Package",
+          "version": "[2.19.0, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Username": "your username",
+  "ClientId": "your client id",
+  "ClientSecret": "your client secret",
+  "Playlists": [
+    "your playlist identifiers here, for example: spotify:user:lambade303:playlist:0Yk8TlHuFCGELX2EZHTRZ4",
+    "divide multiple playlists with commas"
+  ]
+}
