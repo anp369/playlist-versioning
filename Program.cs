@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CommandLine;
-using Newtonsoft.Json;
 using SpotifyAPI.Web.Enums;
 using System.IO;
 using System.Linq;

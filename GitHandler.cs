@@ -1,9 +1,6 @@
 using System;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using LibGit2Sharp;
 
 namespace SpotifyVersioning
 {
@@ -14,28 +11,34 @@ namespace SpotifyVersioning
     /// </summary>
     public class GitHandler
     {
-        //this is kind of useless but git wants some kind of publishing information
-        private static Signature _signature = new Signature("versioner","1234@567.de",DateTimeOffset.Now);
-        
+       
         /// <summary>
         /// assumes, that a repo is in the current folder and
         /// tracks all changes to playlist text files
         /// </summary>
         public static void CheckForChanges()
         {
-            try
-            {
-                Repository repo = new Repository("./");
-                Commands.Stage(repo,"*");
-                var time = DateTime.Now;
-                var status = repo.RetrieveStatus(new StatusOptions());
-                Console.WriteLine("{1} : Geänderte Dateien: {0}", status.Staged.Count().ToString(),DateTime.Now.ToString("yyyMMdd"));
-                repo.Commit(time.ToString("yyyy-MM-dd"),_signature,_signature);
-            }
-            catch (EmptyCommitException e)
-            {
-                Console.WriteLine("{0} :Keine Änderungen", DateTime.Now.ToString("yyyMMdd"));
-            }
+       
+            Process.Start("git", "add --all");
+            var time = DateTime.Now;
+            
+            Process status = new Process();
+            status.StartInfo.FileName = "git";
+            status.StartInfo.Arguments= "status -s -uno";
+            status.StartInfo.UseShellExecute = false;
+            status.StartInfo.CreateNoWindow = true;
+            status.StartInfo.RedirectStandardOutput = true;
+            status.Start();
+            var results = status.StandardOutput.ReadToEnd();
+            status.WaitForExit();
+            status.Dispose();
+            
+            
+            Console.WriteLine("{0} : git status: {1}",DateTime.Now.ToString("yyyMMdd"), results);
+            var commit = Process.Start("git","commit -m \""+time.ToString("yyyy-MM-dd")+"\"");
+            commit.WaitForExit();
+            
+            
         }
         
         
@@ -52,7 +55,8 @@ namespace SpotifyVersioning
             
             string[] gitignore = {"*","!*.txt","conf.json"};
 
-            Repository.Init("./");
+            var init = Process.Start("git", "init");
+            init.WaitForExit();
             File.WriteAllLines("./.gitignore",gitignore);
         }
     }

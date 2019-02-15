@@ -27,7 +27,6 @@ You're now ready to go!
 
 ## Used libraries 
 this project uses the following libraries: 
-* [libgit2sharp](https://github.com/libgit2/libgit2sharp)
 * [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
 * [commandlineparser](https://github.com/commandlineparser/commandline)
 * [Newtonsoft JSON](https://github.com/JamesNK/Newtonsoft.Json)
