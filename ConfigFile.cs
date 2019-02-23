@@ -15,6 +15,7 @@ namespace SpotifyVersioning
         public string ClientId {get; set;}
         public string ClientSecret {get; set;}
         public string GitRepoPath { get; set; }
+        public string LogFilePath { get; set; }
         public string[] Playlists { get; set; }
         
 

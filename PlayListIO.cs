@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using SpotifyAPI.Web.Models;
 using System.IO;
+using System.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace SpotifyVersioning
 {
@@ -10,14 +12,32 @@ namespace SpotifyVersioning
     /// </summary>
     public static class PlayListIO
     {
-        public static void WritePlaylistToFile(List<string> pl,string path ,string name)
+        public static void WritePlaylistToFile(OwnPlaylist pl,string path)
         {
-            File.WriteAllLines(path+name+".txt",pl);
+            File.WriteAllLines(path+pl.Name+".txt", pl.ConvertToString());
         }
 
-        public static List<string> ReadPlaylistFromFile(string name)
+        public static OwnPlaylist ReadPlaylistFromFile(string path)
         {
-            throw new NotImplementedException();
+            OwnPlaylist pl = new OwnPlaylist();
+            string[] songs = File.ReadAllLines(path);
+            foreach (string str in songs)
+            {
+                pl.AddSong(new Song(str));   
+            }
+
+            return pl;
+        }
+
+        public static List<OwnPlaylist> ReadAllPlaylistsFromDir(string dir)
+        {
+            List<OwnPlaylist> playlists = new List<OwnPlaylist>();
+            foreach (string f in Directory.EnumerateFiles(dir).Where(s => Path.GetExtension(s) == ".txt"))
+            {
+                playlists.Add(ReadPlaylistFromFile(f));
+            }
+
+            return playlists;
         }
     }
 }

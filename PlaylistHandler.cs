@@ -82,20 +82,19 @@ namespace SpotifyVersioning
             }
 
             // create a plain text of each playlist
-            foreach (var pl in playlists)
+            foreach (OwnPlaylist pl in playlists)
             {
                 while (pl.Songs.Count < pl.Count) // use this to know when to check for more pages
                 {
                     pl.CurrentPage.Items.ForEach(track =>
                     {
-                        string[] arr = {track.Track.Uri, track.Track.Name, track.Track.Artists[0].Name};
-                        pl.Songs.Add(string.Join(":", arr));
+                        pl.Songs.Add(new Song(track.Track.Uri,track.Track.Name,track.Track.Artists[0].Name));
                     });
                     if (pl.Songs.Count < pl.Count) pl.CurrentPage = _Spotify.GetNextPage(pl.CurrentPage);
                 }
                 
-                pl.Songs.Sort((x,y) => x.Split(':')[3].CompareTo(y.Split(':')[3])); // Sort by name of the song
-                PlayListIO.WritePlaylistToFile(pl.Songs,RepoPath,pl.Name);
+                pl.Songs.Sort((x,y) => x.SongName.CompareTo(y.SongName)); // Sort by name of the song
+                PlayListIO.WritePlaylistToFile(pl,RepoPath);
             }
             GitHandler.CheckForChanges(RepoPath);
         }

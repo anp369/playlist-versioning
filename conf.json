@@ -3,6 +3,7 @@
   "ClientId": "yourClientId",
   "ClientSecret": "yourClientSecret",
   "GitRepoPath": "pathToYourGitRepo",
+  "LogFilePath": "",
   
   "Playlists": [
     "your playlist identifiers here, for example: spotify:user:lambade303:playlist:0Yk8TlHuFCGELX2EZHTRZ4",

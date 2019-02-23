@@ -11,13 +11,13 @@ namespace SpotifyVersioning
     {
        
         public string Name;
-        public List<string> Songs;
+        public List<Song> Songs;
         public Paging<PlaylistTrack> CurrentPage;
         public int Count;
         
         public OwnPlaylist()
         {
-            Songs = new List<string>();
+            Songs = new List<Song>();
         }
         
         public OwnPlaylist(string name, Paging<PlaylistTrack> page) : this()
@@ -26,5 +26,15 @@ namespace SpotifyVersioning
             CurrentPage = page;
             Count = page.Total;
         }
+
+        public IEnumerable<string> ConvertToString()
+        {
+            foreach (Song song in Songs)
+            {
+                yield return song.ToString();
+            }
+        }
+        
+        public void AddSong(Song song){Songs.Add(song);}
     }
 }

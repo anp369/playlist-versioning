@@ -10,11 +10,15 @@
       <e p="Exceptions.cs" t="Include" />
       <e p="GitHandler.cs" t="Include" />
       <e p="LICENSE" t="Include" />
+      <e p="Logger.cs" t="Include" />
+      <e p="Modules.cs" t="Include" />
+      <e p="Options.cs" t="Include" />
       <e p="OwnPlaylist.cs" t="Include" />
       <e p="PlayListIO.cs" t="Include" />
       <e p="PlaylistHandler.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
+      <e p="Song.cs" t="Include" />
       <e p="SpotifyVersioning.csproj" t="IncludeRecursive" />
       <e p="SpotifyVersioning.sln" t="IncludeFlat" />
       <e p="bin" t="ExcludeRecursive" />

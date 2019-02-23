@@ -44,7 +44,7 @@ namespace SpotifyVersioning
         /// </summary>
         /// <param name="path">path in which the git repo should be initalized</param>
         /// <exception cref="Exception"></exception>
-        public static void FirstStart(string path)
+        public static void Initialise(string path)
         {
             Console.WriteLine("Creating Repo: {0}",path);
             if (Repository.IsValid(path))
