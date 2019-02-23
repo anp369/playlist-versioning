@@ -31,41 +31,59 @@ namespace SpotifyVersioning
         
         static void Main(string[] args)
         {
-            try
-            {
+            
                 Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
                 {
-                    //load config file and init program components with it
-                    ConfigFile  cnf = ConfigFile.DeserializeFile(o.ConfigPath);
-                    if (cnf.GitRepoPath.Last() != '/')
-                        throw new InvalidPathException("The path in your config file needs to end with '/'");
-               
-                    if (o.Init)
+                    try
                     {
-                        GitHandler.FirstStart(cnf.GitRepoPath);
-                    }
+                        //load config file and init program components with it
+                        if (o.Verbose) Console.WriteLine("loading Config file: {0}", o.ConfigPath);
+                        ConfigFile cnf = ConfigFile.DeserializeFile(o.ConfigPath);
+                        if (cnf.GitRepoPath.Last() != '/')
+                            throw new InvalidPathException("The path in your config file needs to end with '/'");
 
-                    else // all following parts require API access
-                    {
-                    
-                        List<string> pll = cnf.Playlists.ToList();
-                        PlaylistHandler pl = new PlaylistHandler(cnf, Scope.PlaylistReadPrivate);
-                    
-                        if (o.Cron)
+                        if (o.Init)
                         {
-                            if (!Repository.IsValid(cnf.GitRepoPath))
-                            {
-                                throw new Exception("Kein Git-Repo gefunden, bite mit --init erstellen");
-                            }
-                            pl.RunCron();
+                            GitHandler.FirstStart(cnf.GitRepoPath);
                         }
+
+                        else // all following parts require API access
+                        {
+
+                            List<string> pll = cnf.Playlists.ToList();
+                            PlaylistHandler pl = new PlaylistHandler(cnf, Scope.PlaylistReadPrivate);
+
+                            if (o.Cron)
+                            {
+                                if (!Repository.IsValid(cnf.GitRepoPath))
+                                {
+                                    throw new Exception("Kein Git-Repo gefunden, bite mit --init erstellen");
+                                }
+
+                                pl.RunCron();
+                            }
+                        }
+                    }
+                    catch (InvalidPathException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (SpotifyException e)
+                    {
+                        Console.WriteLine("Fehler beim Zugriff auf die Spotify API: {0}", e.Message);
+                        if (o.Verbose)
+                        {
+                            Console.WriteLine("Error Code: {0}", e.Data["ErrorCode"]);
+                            Console.WriteLine("Error Description: {0}", e.Data["ErrorDesc"]);
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        Console.WriteLine("IO Error: {0}", e.Message);
+                        if (o.Verbose) Console.WriteLine(e.StackTrace);
                     }
                 });
             }
-            catch (InvalidPathException e)
-            {    
-                Console.WriteLine(e.Message);
-            }
+            
         }
     }
-}

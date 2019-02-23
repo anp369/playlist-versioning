@@ -6,13 +6,17 @@ namespace SpotifyVersioning
     {
         public InvalidPathException() : base () {}
         public InvalidPathException(string message) : base (message) {}
-        public InvalidPathException(string message, Exception innerException) : base (message, innerException) {}
     }
 
     public class GitException : Exception
     {
         public GitException() : base() {}
         public GitException(string message) : base(message) {}
-        public GitException(string message, Exception innerException) : base(message, innerException) {}
+    }
+
+    public class SpotifyException : Exception
+    {
+        public SpotifyException() : base() {}
+        public SpotifyException(string message) : base(message) {}
     }
 }

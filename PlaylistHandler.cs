@@ -42,6 +42,14 @@ namespace SpotifyVersioning
                 auth.ClientSecret = cnf.ClientSecret;
 
                 Token token = auth.DoAuth();
+
+                if (token.Error != null)
+                {
+                    SpotifyException e = new SpotifyException("errors appeared during auth, check your config file for correct credentials");
+                    e.Data["ErrorCode"] = token.Error;
+                    e.Data["ErrorDesc"] = token.ErrorDescription;
+                    throw e;
+                }
                 
                 // creating the spotify api with authentication
                 _Spotify = new SpotifyWebAPI(){TokenType = token.TokenType, AccessToken = token.AccessToken};
@@ -49,7 +57,6 @@ namespace SpotifyVersioning
             
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 throw;
             }
         }
