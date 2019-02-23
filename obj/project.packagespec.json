@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "restore": {
     "projectUniqueName": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/SpotifyVersioning.csproj",
-    "projectName": "SpotifyVersioning",
+    "projectName": "playlist-versioning",
     "projectPath": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/SpotifyVersioning.csproj",
     "outputPath": "/home/andi/Documents/coden/C#/projects/SpotifyVersioning/obj/",
     "projectStyle": "PackageReference",

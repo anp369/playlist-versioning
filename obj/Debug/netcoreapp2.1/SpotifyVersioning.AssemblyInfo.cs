@@ -7,10 +7,10 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("SpotifyVersioning")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("playlist-versioning")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("SpotifyVersioning")]
-[assembly: System.Reflection.AssemblyTitleAttribute("SpotifyVersioning")]
+[assembly: System.Reflection.AssemblyProductAttribute("playlist-versioning")]
+[assembly: System.Reflection.AssemblyTitleAttribute("playlist-versioning")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

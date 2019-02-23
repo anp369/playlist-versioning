@@ -11,19 +11,40 @@ This tool provides an simple command line interface to the user to:
 *not ready yet*
 
 ## Installing 
+**Raspberry Pi:**  
+Since I experienced a bug that libgit2sharp could'nt find the compiled libraries you
+have to compile the yourself:
+1) clone the [libgit2 Repo](https://github.com/libgit2/libgit2) to your raspberry pi
+2) follow the build instructions of the README
+3) look for the ```libgit2.so``` and remember the location
+4) clone this repository to your computer (the pi can't build it itself)
+5) build the project with ```dotnet publish -c release - r linux-arm --self-contained```
+6) copy all files of the ```bin/release/netcoreapp2.1/linux-arm/publish``` directory over to your pi
+7) make sure ```playlist-versioning``` is executable
+8) copy the ```libgit2.so``` file in this directory and rename it to ```libgit2-572e4d8.so```
+Otherwise libgit2sharp can't find it
+9) Follow the generic steps in the *Configuration* Section
+
+**Other Linux**
 1) Clone the repository, compile it using the dotnet tool.  
-2) Drop the compiled .dll in an empty folder along with the conf.json template
-3) tune the settings in the ```conf.json```
-4) if you want to check for playlist changes on a regular basis setup an cron job, calling the program with the ```--cron``` flag
+2) Drop the playlist-versioning.dll into any folder you like
+3) Follow the generic steps in the *Configuration* Section
 
 ## Configuration 
-1) open the ```conf.json``` file
+1) open the ```conf.json``` file with your favorite editor
 2) enter your spotify username and the spotify api credentials. You can get those 
 in the Spotify Developer [Dashboard](https://developer.spotify.com/dashboard)
 3) enter the URIs of the playlist you want to keep track of into the "Playlists list"
-4) Save the file and put it in the folder with the executable
-5) call ```dotnet SpotifyVersioning.dll --init```
-You're now ready to go!
+4) create a directory that holds your playlist files later
+5) enter the path of that folder into the config file
+6) Save the file and put it where you like
+7) call ```dotnet SpotifyVersioning.dll --init --config *pathtoyourconfig*``` if on non arm linux  
+if you're on a raspi call ```*pathtoexec/playlist-versioning --init --config *pathtoyourconfig*```
+ 
+
+You're now ready to go! To query the playlists call the program with the ```--cron``` flag along with
+the path to the config file. *You can automate this using crontab*
+
 
 ## Used libraries 
 this project uses the following libraries: 
