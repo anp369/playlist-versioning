@@ -10,9 +10,9 @@ namespace SpotifyVersioning
     /// </summary>
     public static class PlayListIO
     {
-        public static void WritePlaylistToFile(List<string> pl, string name)
+        public static void WritePlaylistToFile(List<string> pl,string path ,string name)
         {
-            File.WriteAllLines("./"+name+".txt",pl);
+            File.WriteAllLines(path+name+".txt",pl);
         }
 
         public static List<string> ReadPlaylistFromFile(string name)

@@ -15,17 +15,17 @@ namespace SpotifyVersioning
     public class GitHandler
     {
         //this is kind of useless but git wants some kind of publishing information
-        private static Signature _signature = new Signature("versioner","1234@567.de",DateTimeOffset.Now);
+        private static readonly Signature _signature = new Signature("versioner","1234@567.de",DateTimeOffset.Now);
         
         /// <summary>
         /// assumes, that a repo is in the current folder and
         /// tracks all changes to playlist text files
         /// </summary>
-        public static void CheckForChanges()
+        public static void CheckForChanges(string path)
         {
             try
             {
-                Repository repo = new Repository("./");
+                Repository repo = new Repository(path);
                 Commands.Stage(repo,"*");
                 var time = DateTime.Now;
                 var status = repo.RetrieveStatus(new StatusOptions());
@@ -42,18 +42,20 @@ namespace SpotifyVersioning
         /// <summary>
         /// initialises an empty git repository in the current folder and creates an .gitignore
         /// </summary>
+        /// <param name="path">path in which the git repo should be initalized</param>
         /// <exception cref="Exception"></exception>
-        public static void FirstStart()
+        public static void FirstStart(string path)
         {
-            if (Directory.Exists("./.git"))
+            Console.WriteLine("Creating Repo: {0}",path);
+            if (Repository.IsValid(path))
             {
-                throw new Exception("Git Repository bereits vorhanden");
+                throw new GitException("Git Repository bereits vorhanden");
             }
             
             string[] gitignore = {"*","!*.txt","conf.json"};
 
-            Repository.Init("./");
-            File.WriteAllLines("./.gitignore",gitignore);
+            Repository.Init(path);
+            File.WriteAllLines(path+".gitignore",gitignore);
         }
     }
 }

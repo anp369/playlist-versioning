@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LibGit2Sharp;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
@@ -21,12 +22,14 @@ namespace SpotifyVersioning
         
         public string Username { get; private set; }
         public List<string> PlaylistIDs { get; private set; }
+        public string RepoPath { get; private set; }
         
         
         public PlaylistHandler(ConfigFile cnf, Scope scope)
         {
             Username = cnf.Username;
             _Scope = scope;
+            RepoPath = cnf.GitRepoPath;
 
             PlaylistIDs = cnf.Playlists.ToList();
 
@@ -85,9 +88,9 @@ namespace SpotifyVersioning
                 }
                 
                 pl.Songs.Sort((x,y) => x.Split(':')[3].CompareTo(y.Split(':')[3])); // Sort by name of the song
-                PlayListIO.WritePlaylistToFile(pl.Songs,pl.Name);
+                PlayListIO.WritePlaylistToFile(pl.Songs,RepoPath,pl.Name);
             }
-            GitHandler.CheckForChanges();
+            GitHandler.CheckForChanges(RepoPath);
         }
 
         
