@@ -6,6 +6,7 @@
     <e p="$USER_HOME$/.Rider2018.2/system/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2018.2/system/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_SpotifyVersioning.491278092.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="HELP.md" t="Include" />
       <e p="LICENSE" t="Include" />
       <e p="Logger.cs" t="Include" />
       <e p="Program.cs" t="Include" />

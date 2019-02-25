@@ -6,7 +6,7 @@ so this queries the Spotify API for Playlists the user wants to keep track of
 and manages changes with git.  
 This tool provides an simple command line interface to the user to:  
 * automatically store the state of a playlist and add this version to a git repo
-* ~~get a diff between 2 versions~~
+* get a diff between 2 versions
 * ~~automatically create an old version of a playlist in your account~~
 *not ready yet*
 
@@ -15,13 +15,14 @@ This tool provides an simple command line interface to the user to:
 Since I experienced a bug that libgit2sharp could'nt find the compiled libraries you
 have to compile the yourself:
 1) clone the [libgit2 Repo](https://github.com/libgit2/libgit2) to your raspberry pi
-2) follow the build instructions of the README
+2) follow the build instructions of the README in the libgit2 repo
 3) look for the ```libgit2.so``` and remember the location
 4) clone this repository to your computer (the pi can't build it itself)
 5) build the project with ```dotnet publish -c release - r linux-arm --self-contained```
 6) copy all files of the ```bin/release/netcoreapp2.1/linux-arm/publish``` directory over to your pi
 7) make sure ```playlist-versioning``` is executable
-8) copy the ```libgit2.so``` file in this directory and rename it to ```libgit2-572e4d8.so```
+8) copy the ```libgit2.so``` file in the directory you cloned the other files to
+ and rename it to ```libgit2-572e4d8.so```
 Otherwise libgit2sharp can't find it
 9) Follow the generic steps in the *Configuration* Section
 
@@ -38,13 +39,15 @@ in the Spotify Developer [Dashboard](https://developer.spotify.com/dashboard)
 4) create a directory that holds your playlist files later
 5) enter the path of that folder into the config file
 6) Save the file and put it where you like
-7) call ```dotnet SpotifyVersioning.dll --init --config *pathtoyourconfig*``` if on non arm linux  
-if you're on a raspi call ```*pathtoexec/playlist-versioning --init --config *pathtoyourconfig*```
+7) call ```dotnet SpotifyVersioning.dll init --config *pathtoyourconfig*``` if on non arm linux  
+if you're on a raspi call ```*pathtoexec/playlist-versioning init --config *pathtoyourconfig*```
  
 
-You're now ready to go! To query the playlists call the program with the ```--cron``` flag along with
-the path to the config file. *You can automate this using crontab*
+You're now ready to go! To query the playlists call the program with the ```cron``` verb
+ along with the path to the config file. *You can automate this using crontab*
 
+## Usage
+for explanation of functions like the diff function see the [Help File](HELP.md)
 
 ## Used libraries 
 this project uses the following libraries: 
