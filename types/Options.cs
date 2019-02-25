@@ -1,8 +1,7 @@
 using System;
 using CommandLine;
-using CommandLine.Text;
 
-namespace SpotifyVersioning
+namespace SpotifyVersioning.types
 {
     [Verb("cron", HelpText = "Queries all playlists of a given config file, usable wit cronjobs")]
     class CronOptions : Options
@@ -22,6 +21,12 @@ namespace SpotifyVersioning
         [Value(1,HelpText = "Date which should be compared. Enter in YYYY/MM/DD")]
         public DateTime Time { get; set; }
         
+        
+    }
+
+    [Verb("interactive", HelpText = "starts an interactive CLI session to interact with saved playlists")]
+    class InteractiveOptions : Options
+    {
         
     }
 

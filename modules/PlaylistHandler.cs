@@ -6,6 +6,7 @@ using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Models;
+using SpotifyVersioning.types;
 
 namespace SpotifyVersioning
 {
@@ -55,7 +56,7 @@ namespace SpotifyVersioning
                 _Spotify = new SpotifyWebAPI(){TokenType = token.TokenType, AccessToken = token.AccessToken};
             }
             
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

@@ -6,23 +6,20 @@
     <e p="$USER_HOME$/.Rider2018.2/system/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2018.2/system/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_SpotifyVersioning.491278092.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
-      <e p="ConfigFile.cs" t="Include" />
-      <e p="Exceptions.cs" t="Include" />
-      <e p="GitHandler.cs" t="Include" />
       <e p="LICENSE" t="Include" />
       <e p="Logger.cs" t="Include" />
-      <e p="Modules.cs" t="Include" />
-      <e p="Options.cs" t="Include" />
-      <e p="OwnPlaylist.cs" t="Include" />
-      <e p="PlayListIO.cs" t="Include" />
-      <e p="PlaylistHandler.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
-      <e p="Song.cs" t="Include" />
       <e p="SpotifyVersioning.csproj" t="IncludeRecursive" />
       <e p="SpotifyVersioning.sln" t="IncludeFlat" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="conf.json" t="Include" />
+      <e p="modules" t="Include">
+        <e p="GitHandler.cs" t="Include" />
+        <e p="Modules.cs" t="Include" />
+        <e p="PlayListIO.cs" t="Include" />
+        <e p="PlaylistHandler.cs" t="Include" />
+      </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
@@ -32,6 +29,13 @@
       </e>
       <e p="own_conf.json" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="types" t="Include">
+        <e p="ConfigFile.cs" t="Include" />
+        <e p="Exceptions.cs" t="Include" />
+        <e p="Options.cs" t="Include" />
+        <e p="OwnPlaylist.cs" t="Include" />
+        <e p="Song.cs" t="Include" />
+      </e>
     </e>
   </component>
 </project>

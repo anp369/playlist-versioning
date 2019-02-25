@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using SpotifyAPI.Web.Models;
 
-namespace SpotifyVersioning
+namespace SpotifyVersioning.types
 {
     /// <summary>
     /// provides an easier interface for creating the textfiles of a playlist

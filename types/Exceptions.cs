@@ -1,6 +1,6 @@
 using System;
 
-namespace SpotifyVersioning
+namespace SpotifyVersioning.types
 {
     public class InvalidPathException: Exception
     {

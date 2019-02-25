@@ -916,10 +916,11 @@
   },
   "libraries": {
     "CommandLineParser/2.4.3": {
-      "sha512": "3/WpSCsHNo4aTSaNW9SnmSqRNDgR4meKVJn5anKZn/hR/lGnDp8HbDMu1/w2GXOXi2rAhREU1cNwQMtEtlR1mg==",
+      "sha512": "U2FC9Y8NyIxxU6MpFFdWWu1xwiqz/61v/Doou7kmVjpeIEMLWyiNNkzNlSE84kyJ0O1LKApuEj5z48Ow0Hi4OQ==",
       "type": "package",
       "path": "commandlineparser/2.4.3",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "commandlineparser.2.4.3.nupkg.sha512",
@@ -929,10 +930,11 @@
       ]
     },
     "LibGit2Sharp/0.26.0": {
-      "sha512": "+zaLmuFzvBjM/VxyrSD6JgrpC28Ih2gO/gjV7WV9Cehas1zmCIy5TGOryrsJVVdovgAQ3GuK9b8/Gkjr2i4PDw==",
+      "sha512": "Yxw4An+JfU/folkiKKPEfvdUuWF5Sa2cccI5GfQJamcWPHr05MslMdx/Ryuu0F+VwsEuJoatnIvja+PmwYkK0w==",
       "type": "package",
       "path": "libgit2sharp/0.26.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "App_Readme/CHANGES.md",
         "App_Readme/LICENSE.md",
@@ -948,10 +950,11 @@
       ]
     },
     "LibGit2Sharp.NativeBinaries/2.0.267": {
-      "sha512": "W0xQuO+qHJwWDS4Zyy+Y0ntmQrsa+C/Zd/oKwOf9oTAkM5JHPW4IEMbRrRVLgAD/Fwc76a18MKnYAxT22TJnYw==",
+      "sha512": "8fwTV7Ka0zxS43OY+TGoBhC8TRcF0+dG+IDA/csE/4QYutnfW8LYIaN/OOdTPRD5/Xtk3su9pwt1BSSbi8s7kw==",
       "type": "package",
       "path": "libgit2sharp.nativebinaries/2.0.267",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "build/LibGit2Sharp.NativeBinaries.props",
         "build/net46/LibGit2Sharp.NativeBinaries.props",
@@ -1504,10 +1507,12 @@
       ]
     },
     "Newtonsoft.Json/10.0.3": {
-      "sha512": "MoATFm6YJyk5OdqDdxDWfKe5dkY3Cygu0wrpKPH/LbWtMmSuD/3G/JIInt9sIJN7hKQOFYCIb2UjLc2vO5byQQ==",
+      "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
       "path": "newtonsoft.json/10.0.3",
+      "hasTools": true,
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
@@ -1532,10 +1537,11 @@
       ]
     },
     "SpotifyAPI-NET/2.19.0": {
-      "sha512": "f8x15vci99DpTOcHztCsSFnUGngzCY9Y7z2yHOGquaHYjyaV5FaKqLBnUgsLvznKzL0NBOOw1faO+1KBMw0C0Q==",
+      "sha512": "PxmdnO3J0Gb8JBHDA622bqrg43GcxRqRACJ6XNid/Js/opV7kcNXmXskozIVWuqlzSyTRS98+R9jaQHiQ5oTWA==",
       "type": "package",
       "path": "spotifyapi-net/2.19.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/SpotifyAPI.XML",
         "lib/SpotifyAPI.dll",
@@ -3785,7 +3791,7 @@
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/andi/.config/NuGet/NuGet.Config"
+        "/home/andi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -3816,7 +3822,6 @@
             "version": "[0.26.0, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

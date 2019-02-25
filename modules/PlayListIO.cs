@@ -4,6 +4,7 @@ using SpotifyAPI.Web.Models;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Schema;
+using SpotifyVersioning.types;
 
 namespace SpotifyVersioning
 {

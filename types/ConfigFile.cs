@@ -1,9 +1,7 @@
-using System.Dynamic;
 using System.IO;
-using System.Net;
 using Newtonsoft.Json;
 
-namespace SpotifyVersioning
+namespace SpotifyVersioning.types
 {
     /// <summary>
     /// Class that holds Settings, deserialzied from the .json config file

@@ -1,6 +1,4 @@
-using System.Linq;
-
-namespace SpotifyVersioning
+namespace SpotifyVersioning.types
 {
     public class Song
     {

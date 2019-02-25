@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using SpotifyAPI.Web.Enums;
 using System.IO;
 using System.Linq;
+using SpotifyVersioning.types;
 
 namespace SpotifyVersioning
 {
@@ -19,7 +20,7 @@ namespace SpotifyVersioning
         {
             try
             {
-                var result = Parser.Default.ParseArguments<CronOptions, DiffOptions, InitOptions>(args);
+                var result = Parser.Default.ParseArguments<CronOptions, DiffOptions, InitOptions, InteractiveOptions>(args);
 
                 result.WithParsed<Options>(o =>
                 {
@@ -30,8 +31,9 @@ namespace SpotifyVersioning
                 
                     
                 result.WithParsed<CronOptions>(o => Modules.Cron(o,_configFile))
-                .WithParsed<InitOptions>(o => Modules.Init(o,_configFile))
-                .WithParsed<DiffOptions>(o => Modules.Diff(o,_configFile));
+                    .WithParsed<InitOptions>(o => Modules.Init(o,_configFile))
+                    .WithParsed<DiffOptions>(o => Modules.Diff(o,_configFile))
+                    .WithParsed<InteractiveOptions>(o => Modules.Interactive(o,_configFile));
             }
 
 
