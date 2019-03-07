@@ -47,7 +47,8 @@ You're now ready to go! To query the playlists call the program with the ```cron
  along with the path to the config file. *You can automate this using crontab*
 
 ## Usage
-for explanation of functions like the diff function see the [Help File](HELP.md)
+for explanation of functions like the diff function see the [Help File](HELP.md)  
+the interactive mode isn't working with all features yet
 
 ## Used libraries 
 this project uses the following libraries: 

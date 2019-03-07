@@ -30,5 +30,10 @@ Changes in playlist: test
 -spotify:track:68FhagAoZr9Ld8oCp9JoYP:Temptation:Diana Krall
 -spotify:track:2CpETKcs2iOHIG0bj0bApJ:Train Song:Holly Cole
 ```
-"-" stands for removed files  
-"+" stands for added files
+ "-" stands for removed files  
+ "+" stands for added files 
+
+####3) How to use interactive mode
+type ```playlist-versioning interactive --config *path to conf*```
+the program will present an interactive shell to go through changes more comfortable.  
+You can use the commands ```help, versions, diff``` in the program. Enter ```quit``` or ```exit``` to leave
