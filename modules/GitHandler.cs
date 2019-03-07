@@ -40,6 +40,27 @@ namespace SpotifyVersioning
                 Console.WriteLine("{0} :Keine Änderungen", DateTime.Now.ToString("yyyMMdd"));
             }
         }
+
+        public static void PrintDiffs(List<string> diffs)
+        {
+            foreach (var line in diffs)
+            {
+                if (line != "" && line.Length > 1)
+                {
+                    if (line[0] == '+' && line[1] != '+')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(line);
+                    }
+
+                    if (line[0] == '-' && line[1] != '-')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+        }
         
         
         /// <summary>
@@ -67,8 +88,10 @@ namespace SpotifyVersioning
         /// <param name="repoPath">path of the git repo</param>
         /// <param name="playlistName">name of the playlist (case sensitive!)</param>
         /// <param name="verbose">wheter verbose messages should be printed during version check</param>
-        public static void ListVersions(string repoPath,string playlistName, bool verbose)
+        public static List<string> ListVersions(string repoPath,string playlistName, bool verbose)
         {
+            List<string> result = new List<string>();
+            
             List<DateTimeOffset> dates = new List<DateTimeOffset>();
             Repository repo = new Repository(repoPath);
             foreach (Commit commit in repo.Commits)
@@ -77,7 +100,7 @@ namespace SpotifyVersioning
                 {
                     dates.Add(commit.Author.When);
                     if (verbose)
-                        Console.WriteLine("{0}    : {1}", commit.Author.When.ToString(), "initial Commit");
+                        result.Add(String.Format("{0}    : {1}", commit.Author.When.ToString(), "initial Commit"));
                 }
                 foreach (var parent in commit.Parents)
                 {
@@ -86,30 +109,33 @@ namespace SpotifyVersioning
                     {
                         if (change.Path.Contains(playlistName)) dates.Add(commit.Author.When);
                         if (verbose)
-                            Console.WriteLine("{0}    : {1} : {2}", commit.Author.When.ToString(), change.Status,
-                                change.Path);
+                            result.Add(String.Format("{0}    : {1} : {2}", commit.Author.When.ToString(), change.Status,
+                                change.Path));
                     }
                 }
             }
 
-            Console.WriteLine("Versions of playlist {0}", playlistName);
-            Console.WriteLine(new String('=', playlistName.Length + 21));
+            result.Add(String.Format("Versions of playlist {0}", playlistName));
+            result.Add(new String('=', playlistName.Length + 21));
             foreach (var time in dates)
             {
-                Console.WriteLine("{0}", time.DateTime.ToString("yyyy-MM-dd HH:mm:ss")); //convert to current time
+               result.Add(String.Format("{0}", time.DateTime.ToString("yyyy-MM-dd HH:mm:ss"))); //convert to current time
             }
 
-            if (dates.Count == 0) Console.WriteLine("No Entries found. Did you spell the playlist correctly?");
+            if (dates.Count == 0) result.Add("No Entries found. Did you spell the playlist correctly?");
+            return result;
         }
 
-        public static void PrintDayDiff(string repoPath, string playlistName, bool verbose, DateTime time)
+        public static List<string> GetDiff(string repoPath, string playlistName, bool verbose, DateTime time)
         {
+            List<string> resultString = new List<string>();
+            
             Repository repo = new Repository(repoPath);
             var results = repo.Commits.QueryBy(playlistName + ".txt").ToList();
             Commit result = null;
             foreach (LogEntry log in results)
             {
-                if (verbose) Console.WriteLine(log.Commit.Author.When.ToString("dd/MM/yy: hh:mm"));
+                if (verbose) resultString.Add(log.Commit.Author.When.ToString("dd/MM/yy: hh:mm"));
                 if (log.Commit.Author.When.Date.ToString("dd/MM/yy: hh:mm") == time.ToString("dd/MM/yy: hh:mm") || 
                     log.Commit.Author.When.Date.ToString("d") == time.ToString("d")
                 ) //search only for queried day
@@ -118,32 +144,17 @@ namespace SpotifyVersioning
                 }
             }
 
-            if (result == null) Console.WriteLine("No commit for this playlist found on that day");
+            if (result == null) resultString.Add("No commit for this playlist found on that day");
             else
             {
                 Patch diff = repo.Diff.Compare<Patch>(result.Tree, repo.Head.Tip.Tree);
-                if (diff.Count() == 0) Console.WriteLine("No differences found!");
+                if (diff.Count() == 0) resultString.Add("No differences found!");
                 string rawText = diff.Content;
-                Console.WriteLine("Changes in playlist: {0}",playlistName);
-                foreach (string line in rawText.Split('\n'))
-                {
-                    if (line != "" && line.Length > 1)
-                    {
-                        if (line[0] == '+' && line[1] != '+')
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine(line);
-                        }
-
-                        if (line[0] == '-' && line[1] != '-')
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(line);
-                        }
-                    }
-                        
-                }
+                resultString.Add(String.Format("Changes in playlist: {0}",playlistName));
+                foreach (string line in rawText.Split('\n')) resultString.Add(line);
             }
+
+            return resultString;
         }
         
     }

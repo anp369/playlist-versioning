@@ -10,6 +10,7 @@ namespace SpotifyVersioning
 {
     /// <summary>
     /// contains all modules that get called by the main program
+    /// one module per verb
     /// </summary>
     internal static class Modules
     {
@@ -38,18 +39,22 @@ namespace SpotifyVersioning
 
         internal static void Diff(DiffOptions opts, ConfigFile cfg)
         {
-            Repository repo = new Repository(cfg.GitRepoPath);
+            var diff = GitHandler.GetDiff(cfg.GitRepoPath,opts.FileName,opts.Verbose,opts.Time);
+            GitHandler.PrintDiffs(diff);
+        }
 
-            // prints all Versions of a given playlist name
-            if (opts.Versions)GitHandler.ListVersions(cfg.GitRepoPath,opts.FileName,opts.Verbose);
-
-            // print diff of a current day to today
-            else GitHandler.PrintDayDiff(cfg.GitRepoPath,opts.FileName,opts.Verbose,opts.Time);
+        internal static void Versions(VersionOptions opts, ConfigFile cfg)
+        {
+            foreach (var line in GitHandler.ListVersions(cfg.GitRepoPath,opts.FileName,opts.Verbose))
+            {
+                Console.WriteLine(line);
+            }
         }
 
         internal static void Interactive(InteractiveOptions opts, ConfigFile cfg)
         {
-
+            Interactive inter = new Interactive(cfg);
+            inter.StartSession();
         }
 
     }

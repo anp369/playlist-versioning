@@ -17,6 +17,7 @@
       <e p="conf.json" t="Include" />
       <e p="modules" t="Include">
         <e p="GitHandler.cs" t="Include" />
+        <e p="Interactive.cs" t="Include" />
         <e p="Modules.cs" t="Include" />
         <e p="PlayListIO.cs" t="Include" />
         <e p="PlaylistHandler.cs" t="Include" />

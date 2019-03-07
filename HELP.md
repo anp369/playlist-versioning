@@ -7,7 +7,7 @@ track of changes automatically. You can view the git repository by hand if you w
 ####2) How to use the diff feature
 The diff feature is for quickly look for changes of a playlist. You can select a date
 and the program will show all changes from this date on to now.
-1) call the program like this: ```playlist-versioning diff *playlistname* --versions --config *path to conf*```  
+1) call the program like this: ```playlist-versioning versions *playlistname* --config *path to conf*```  
     This will give you an overview of all dates changes were tracked.  
     Sample output: 
     ```

@@ -3,18 +3,15 @@ using CommandLine;
 
 namespace SpotifyVersioning.types
 {
-    [Verb("cron", HelpText = "Queries all playlists of a given config file, usable wit cronjobs")]
+    [Verb("cron", HelpText = "Queries all playlists of a given config file, usable with cronjobs")]
     class CronOptions : Options
     {
                 
     }
 
-    [Verb("diff", HelpText = "Select two versions of a playlist and compare them")]
+    [Verb("diff", HelpText = "compare the latest version against an earlier version")]
     class DiffOptions : Options
     {
-        [Option("versions",HelpText = "shows all dates on which changes are saved")]
-        public bool Versions { get; set; }
-        
         [Value(0,HelpText = "Name of the Playlist to be compared")]
         public string FileName { get; set; }
         
@@ -22,6 +19,13 @@ namespace SpotifyVersioning.types
         public DateTime Time { get; set; }
         
         
+    }
+
+    [Verb("versions", HelpText = "get all recorded versions of one one playlist")]
+    class VersionOptions : Options
+    {
+        [Value(0,HelpText = "Name of the playlist")]
+        public string FileName { get; set; }
     }
 
     [Verb("interactive", HelpText = "starts an interactive CLI session to interact with saved playlists")]
