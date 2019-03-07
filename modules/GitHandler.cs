@@ -58,6 +58,8 @@ namespace SpotifyVersioning
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(line);
                     }
+
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }

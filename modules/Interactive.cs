@@ -93,7 +93,7 @@ namespace SpotifyVersioning
             {
                 var versions = GitHandler.ListVersions(_config.GitRepoPath, name, false);
                 GitHandler.PrintDiffs(GitHandler.GetDiff(_config.GitRepoPath, name, false, DateTime.Parse(versions[Convert.ToInt32(date)+2])));
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
     }
