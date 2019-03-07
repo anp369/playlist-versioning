@@ -1,10 +1,10 @@
 ## How To use this tool
-####1) How to use the cron feature
-the cron feature is fairly easy to use. Setup your config file as described in README.
+#### 1) How to use the cron feature
+The cron feature is fairly easy to use. Setup your config file as described in README.
 Then call the program like this ```playlist-versioning cron --config *path to conf*```
 If no errors occur, this single command queries all of your setup playlists and keeps
 track of changes automatically. You can view the git repository by hand if you want
-####2) How to use the diff feature
+#### 2) How to use the diff feature
 The diff feature is for quickly look for changes of a playlist. You can select a date
 and the program will show all changes from this date on to now.
 1) call the program like this: ```playlist-versioning versions *playlistname* --config *path to conf*```  
